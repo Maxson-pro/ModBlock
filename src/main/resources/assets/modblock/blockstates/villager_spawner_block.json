@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "modblock:block/villager_spawner_block" }
+  }
+}

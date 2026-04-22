@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "modblock",
+  "version": "${version}",
+  "name": "ModBlock",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/modblock/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.maxim.modblock.client.ModblockDataGenerator"
+    ],
+    "client": [
+      "net.maxim.modblock.client.ModblockClient"
+    ],
+    "main": [
+      "net.maxim.modblock.Modblock"
+    ]
+  },
+  "mixins": [
+    "modblock.mixins.json",
+    {
+      "config": "modblock.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}"
+  }
+}
