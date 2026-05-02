@@ -66,16 +66,16 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
 }
 
-tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
-}
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archives_base_name}" }

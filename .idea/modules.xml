@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ModBlock.client.iml" filepath="$PROJECT_DIR$/.idea/modules/ModBlock.client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ModBlock.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ModBlock.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ModBlock.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ModBlock.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Modik.client.iml" filepath="$PROJECT_DIR$/.idea/modules/Modik.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Modik.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Modik.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Modik.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Modik.test.iml" />
     </modules>
   </component>
 </project>

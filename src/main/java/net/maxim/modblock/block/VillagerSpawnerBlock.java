@@ -1,33 +1,33 @@
 package net.maxim.modblock.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.maxim.modblock.Modblock;
+import org.jetbrains.annotations.Nullable;
 
-public class VillagerSpawnerBlock extends Block {
+public class VillagerSpawnerBlock extends BlockWithEntity {
     public VillagerSpawnerBlock(Settings settings) {
         super(settings);
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        world.scheduleBlockTick(pos, this, 100);
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
+    @Nullable
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int x = pos.getX() + random.nextBetween(-10, 10);
-        int z = pos.getZ() + random.nextBetween(-10, 10);
-        BlockPos spawnPos = new BlockPos(x, pos.getY() + 1, z);
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new VillagerSpawnerEntity(pos, state);
+    }
 
-        if (world.isAir(spawnPos)) {
-            EntityType.VILLAGER.spawn(world, spawnPos, SpawnReason.SPAWNER);
-        }
-        world.scheduleBlockTick(pos, this, 100);
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, Modblock.VILLAGER_SPAWNER_ENTITY, VillagerSpawnerEntity::tick);
     }
 }

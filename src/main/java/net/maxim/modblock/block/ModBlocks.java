@@ -24,6 +24,7 @@ public class ModBlocks {
                 new BlockItem(block, new Item.Settings()));
     }
 
+
     public static void registerModBlocks() {
 
     }
